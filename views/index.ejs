@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>MessageBoard</title>
+</head>
+<style media="screen">
+.comments{
+  margin-left: 20px
+}
+h3 {
+  margin-bottom: 0
+}
+h4 {
+  margin-top: 10px;
+}
+</style>
+<body>
+  <h1>The Dojo Message Board</h1>
+  <hr>
+  <form class="" action="/create_message" method="post">
+    <label for="">Name</label>
+    <input type="text" name="name" value="">
+    <p>Message</p>
+    <textarea name="message" rows="8" cols="80"></textarea>
+    <button type="submit">Post message</button>
+  </form>
+  <div class="messages">
+    <% for (var x in messages) { %>
+      <h3>Name: <%= messages[x].name %></h3>
+      <h4>Message: <%= messages[x].text %></h4>
+      <hr>
+      <div class="comments">
+        <% for (var i = 0; i < messages[x].comments.length; i++) { %>
+          <h5>Name: <%= messages[x].comments[i].name %></h5>
+          <h5>comment: <%= messages[x].comments[i].text %></h5>
+          <hr>
+          <% } %>
+          <form class="" action="/create_comment/<%= messages[x].id %>" method="post">
+            <label for="">Name</label>
+            <input type="text" name="name" value="">
+            <p>Comment</p>
+            <textarea name="text" rows="8" cols="80"></textarea>
+            <button type="submit">Post Comment</button>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </body>
+    </html>
